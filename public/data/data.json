@@ -1,0 +1,178 @@
+[
+    {
+        "name": "home",
+        "firstName":"Vivekraj",
+        "lastName": "Elango",
+        "role": "UI Developer",
+        "title":"Professional Summary",
+        "summary":"High-end developer with years of experience working in tha fast-paced Tech/Marketing Industry. Quick learner proficient in industry standard application and strong knowledge of the fundamentals of Digital Creativity and Strategy to succesfull web solutions.",
+        "dob":"22-09-1987",
+        "mobile":"+91 988 424 6030",
+        "address": "Chennai, TN, India",
+        "email": "viveks.it08@gmail.com",
+        "myPhoto": "./images/img.jpeg",
+        "nav":[
+            {
+                "name": "Home",
+                "href":"#home"
+            },
+            {
+                "name": "About",
+                "href":"#about"
+            },
+            {
+                "name": "Services",
+                "href":"#services"
+            },
+            {
+                "name": "Contact",
+                "href":"#contact"
+            }
+        ],
+        "banner":[
+            {
+                "heading": "Design Develop Discover",
+                "subHeading": "Finding a new way forward - Together",
+                "button": "GET STARTED"
+            }
+        ],
+        "social":[
+            {
+                "name": "facebook",
+                "href": "https://www.facebook.com/vivekrajelango",
+                "fa":"fab fa fa-facebook"
+            },
+            {
+                "name": "twitter",
+                "href": "https://twitter.com/vivekrajelango",
+                "fa":"fab fa fa-twitter"
+            },
+            {
+                "name": "linkedIn",
+                "href": "https://www.linkedin.com/in/vivekrajelango22",
+                "fa":"fab fa fa-linkedin"
+            },
+            {
+                "name": "mail",
+                "href": "mailto:viveks.it08@gmail.com",
+                "fa":"fab fa fa-envelope"
+            }
+        ]
+    },
+    {
+        "name":"About",
+        "title": "ABOUT ME",
+        "images": [
+            "./images/ab4.jpg",
+            "./images/ab6.jpg"
+        ],
+        "heading1": "Web Development",
+        "data1":"Primary focus on UI Development with amazing user experience. Have an eye for clean and artful design, possess superior UI skils and able to translate high-level requirements into interaction flows and atrifacts, and transform into responsive and functional interfaces.",
+        "developSkill": [
+            "React", "Vue.js", "Angular", "HTML5", "CSS3", "Bootstrap"
+        ],
+        "heading2": "Creative Graphics",
+        "data2": "Over a decade of progressive experience in Web, Graphics and Printing, which include formulate basic layout design or presentation approach. Come up with solutions to seemingly intractable problems and work closely with other developers and professionals.",
+        "designSkill": [
+            "Adobe Photoshop", "Illustrator", "XD", "Figma"
+        ]
+    },
+    {
+        "name": "Experience",
+        "details": [
+            {
+                "doj": "Aug'2016",
+                "doe": "Till date",
+                "fa":"fa fa-users",
+                "title": "Tech Specialist",
+                "company": "Tech Mahindra",
+                "designation": "Tech Lead",
+                "content": "Creating website layout/user interfaces by using React, Vue.js, Angular, HTML5, CSS3, Bootstrap"
+            },
+            {
+                "doj": "Jan'2015",
+                "doe": "Aug'2016",
+                "fa":"fa fa-code",
+                "title": "Sr. Developer",
+                "company": "Accenture",
+                "designation": "Sr. Programmer",
+                "content": "Primary focus on UI Development, Angular/HTML/CSS Development to create amazing user experiences"
+            },
+            {
+                "doj": "Apr'2010",
+                "doe": "Jan'2015",
+                "fa":"fa fa-laptop",
+                "title": "Creative Designer",
+                "company": "Frost & Sullivan",
+                "designation": "Creative Designer",
+                "content": "Interactive layout and user interfaces by using HTML5, CSS3, Bootstrap, Photoshop & Illustrator"
+            }
+        ]
+    },
+    {
+        "name": "Education",
+        "details": [
+            {
+                "year": "2010",
+                "university": "University Of Madras",
+                "degree": "M.B.A (Information Systems)",
+                "content": "An MBA in Information Systems program combines business classNamees with information technology policies and practices."
+            },
+            {
+                "year": "2008",
+                "university": "Madurai Kamarajar University",
+                "degree": "B.Sc (Information Technology)",
+                "content": "The best ways to manage IT systems and also about using emerging technologies in the business workplace for maximum productivity"
+            },
+            {
+                "year": "2005",
+                "university": "A.M.M.H.S.S",
+                "degree": "Computer - Maths",
+                "content": "Scientific computing, constructing numerical solutions and using systems to analyze and solve scientific and engineering problems."
+            }
+        ]
+    },
+    {
+        "name":"Contact me",
+        "details": [
+            {
+                "type": "text",
+                "name": "name",
+                "placeholder":"Name",
+                "required": false
+            },
+            {
+                "type": "email",
+                "name": "email",
+                "placeholder":"Email",
+                "required": false
+            },
+            {
+                "type": "text",
+                "name": "phone",
+                "placeholder":"Mobile Number",
+                "required": false
+            }
+        ]
+    },
+    {
+        "name": "footer",
+        "details":[
+            {
+                "title":"Location",
+                "content":"Chennai, TN, India",
+                "fa":"fa fa-map-marker"
+            },
+            {
+                "title":"Email",
+                "content":"viveks.it08@gmail.com",
+                "fa":"fa fa-envelope"
+            },
+            {
+                "title":"Call me",
+                "content":"+91 9884246030",
+                "fa":"fa fa-phone"
+            }
+        ]
+    }
+]
