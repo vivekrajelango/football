@@ -1,16 +1,25 @@
 import React, { useContext, useState } from "react";
+import { Dropdown, Button } from 'react-bootstrap';
 import {DataContext} from '../data/DataProvider';
+import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
+
 
 const Nav = () => {
     const value = useContext(DataContext);
     const [navData] = value.metaValue[0];
     const navValue = navData?.nav;
     // const [show, setShow] = useState('collapse navbar-collapse ');
+    const { t } = useTranslation();
     const [show, setShow] = useState(false);
     const showToggle=()=>{
         setShow(!show);
         // setShow('collapse navbar-collapse show');
     }
+
+    const changeLanguage = (languageCode) => {
+        i18next.changeLanguage(languageCode);
+      };
     
     var toggleMenu = show ? 'collapse navbar-collapse show' : 'collapse navbar-collapse'
     return (
@@ -26,12 +35,36 @@ const Nav = () => {
                         </button>
                         <div className={toggleMenu} id="navbarSupportedContent" style={{}}>
                             <ul className="navbar-nav ml-auto">
-                                {navValue?.map((item,index)=>(
-                                    <li key={index} className="nav-item active">
-                                        <a className="nav-link" href={item.href}>{item.name}</a>
-                                    </li>
-                                ))}
+                                <li className="nav-item active">
+                                    <a className="nav-link" href='#home'>
+                                        {t('home')}
+                                    </a>
+                                </li>
+                                <li className="nav-item active">
+                                    <a className="nav-link" href='#about'>
+                                        {t('about')}
+                                    </a>
+                                </li>
+                                <li className="nav-item active">
+                                    <a className="nav-link" href='#services'>
+                                        {t('services')}
+                                    </a>
+                                </li>
+                                <li className="nav-item active">
+                                    <a className="nav-link" href='#contact'>
+                                        {t('contact')}
+                                    </a>
+                                </li>
                             </ul>
+                            <Dropdown>
+                                <Dropdown.Toggle as={Button} size="sm" variant="primary" id="language-dropdown">
+                                    {i18next.language}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => changeLanguage('en')}>English</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => changeLanguage('it')}>Italiano</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
                     </div>
                 </nav>

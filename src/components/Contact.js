@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 const Contact = (props) => {
+    const { t } = useTranslation();
     const {
         iframeSource = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.4229332327673!2d-0.07793142338005357!3d51.50545637181292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487603438b65db49%3A0x9e78421a085a6f2d!2sTower%20Bridge!5e0!3m2!1sen!2suk!4v1697371680990!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
     } = props;
@@ -14,17 +16,17 @@ const Contact = (props) => {
                             <div className="col-lg-6 contact-left">
                                 <div className="partners">
                                     <div className="cont-details">
-                                        <h5 className="mb-3">Contact Us</h5>
+                                        <h5 className="mb-3">{t('contactus')}</h5>
                                         {/* <p className="mt-3 mb-4">Hi there, We are available 24/7 by fax, e-mail or by phone. Drop us line so we can talk
                                             futher about that.</p> */}
-                                        <h6 className="mb-4"> For more info or inquiry please feel free to get in touch with us.</h6>
+                                        <h6 className="mb-4"> {t('moreinfo')}</h6>
                                     </div>
                                     <div className="hours">
-                                        <h6 className="mt-4">Address:</h6>
+                                        <h6 className="mt-4">{t('address')}</h6>
                                         <p> Test address<br/> Test address2<br/>City<br/> ABC 123</p>
-                                        <h6 className="mt-4">Contact:</h6>
+                                        <h6 className="mt-4">{t('contact')}</h6>
                                         <p className="margin-top"><a href="tel:+(21) 255 999 8899">(+44) 120 345 6789</a></p>
-                                        <h6 className="mt-4">Email:</h6>
+                                        <h6 className="mt-4">{t('email')}</h6>
                                         <p> <a href="mailto:test@test.co.uk">
                                             test@test.co.uk</a></p>
                                     </div>
@@ -54,7 +56,7 @@ const Contact = (props) => {
 
                         </div>
                         <div className="map mt-5 pt-md-5">
-                            <h5>Our location</h5>
+                            <h5>{t('ourlocation')}</h5>
                             <div dangerouslySetInnerHTML={{__html: iframeSource}}></div>
                         </div>
                     </div>
