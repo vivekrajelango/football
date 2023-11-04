@@ -11809,7 +11809,7 @@ button.owl-next {
     max-height: 600px;
     overflow-y: auto;
     width: 300px;
-    margin: 0px auto;
+    /* margin: 0px auto; */
     padding: 10px;
 
   }
@@ -11820,4 +11820,10 @@ button.owl-next {
     padding: 10px;
     cursor: e-resize;
   }
+}
+
+.searchInput{
+  height: 38px;
+  width: 200px;
+  margin-bottom: 2px;
 }

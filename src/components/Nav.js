@@ -3,6 +3,7 @@ import { Dropdown, Button } from 'react-bootstrap';
 import {DataContext} from '../data/DataProvider';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
 
 
 const Nav = () => {
@@ -27,36 +28,36 @@ const Nav = () => {
             <section className="w3l-header">
                 <nav className="navbar navbar-expand-lg navbar-light py-3">
                     <div className="container">
-                        <a href="#home" className="navbar-brand">
+                        <Link className="navbar-brand" to='/'>
                             <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Your logo" title="Your logo" style={{ height: 70 }} />
-                        </a>
+                        </Link>
                         <button onClick={showToggle} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className={toggleMenu} id="navbarSupportedContent" style={{}}>
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active">
-                                    <a className="nav-link" href='#home'>
+                                    <Link className="nav-link" to='/home'>
                                         {t('home')}
-                                    </a>
+                                    </Link>
                                 </li>
-                                <li className="nav-item active">
-                                    <a className="nav-link" href='#about'>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to='/about'>
                                         {t('about')}
-                                    </a>
+                                    </Link>
                                 </li>
-                                <li className="nav-item active">
-                                    <a className="nav-link" href='#services'>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to='/services'>
                                         {t('services')}
-                                    </a>
+                                    </Link>
                                 </li>
-                                <li className="nav-item active">
-                                    <a className="nav-link" href='#contact'>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to='/contact'>
                                         {t('contact')}
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
-                            <Dropdown>
+                            {/* <Dropdown>
                                 <Dropdown.Toggle as={Button} size="sm" variant="primary" id="language-dropdown">
                                     {i18next.language}
                                 </Dropdown.Toggle>
@@ -64,7 +65,7 @@ const Nav = () => {
                                     <Dropdown.Item onClick={() => changeLanguage('en')}>English</Dropdown.Item>
                                     <Dropdown.Item onClick={() => changeLanguage('it')}>Italiano</Dropdown.Item>
                                 </Dropdown.Menu>
-                            </Dropdown>
+                            </Dropdown> */}
                         </div>
                     </div>
                 </nav>

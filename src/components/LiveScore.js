@@ -8,6 +8,7 @@ const LiveScore=()=>{
     const value = useContext(DataContext);
     const [navData] = value.metaValue[0];
     const allowedCountries = navData?.allowedCountries;
+    const [filterCountries, setFilteredCountries] = useState([])
 
     const [countries, setCountries] = useState(allowedCountries);
     const [country, setCountry] = useState('USA');
@@ -15,6 +16,19 @@ const LiveScore=()=>{
     const [cards, setCards] = useState([]);
     const [season, setSeason] = useState(false);
 
+    
+    
+    const searchHandler=(e)=>{
+        let textValue = e.target.value;
+        if(textValue !==''){
+            setFilteredCountries(countries?.filter((item)=>
+                item.country.toLowerCase().indexOf(textValue.toLowerCase()) >-1
+            ))
+        } else {
+            setFilteredCountries(countries);
+        }
+    }
+    
     const selectedCountry=(name)=>{
         setCountry(name);
     }
@@ -53,7 +67,15 @@ const LiveScore=()=>{
     return(
         <div className="score ">
             <div className="left-nav">
-            {countries && countries?.map((item) => (
+            <input  
+                className="searchInput"
+                type="text"
+                placeholder="Search country"
+                // value={searchQuery}
+                onChange={searchHandler}
+            />
+            {filterCountries.length ? 
+                filterCountries?.map((item) => (
                     <Accordion key={item.id} onClick={()=>selectedCountry(item.country)}>
                         <Accordion.Header>{item.country}</Accordion.Header>
                         {league?.map((item) => (
@@ -62,13 +84,20 @@ const LiveScore=()=>{
                             </Accordion.Body>
                         ))}
                     </Accordion>
-                ))}
-                {/* {countries && countries?.map((item) => (
-                    <div key={item.id} onClick={()=>selectedCountry(item.country)}>
-                        {item.country}
-                    </div>
-                ))} */}
+                )) : 
+                countries?.map((item) => (
+                    <Accordion key={item.id} onClick={()=>selectedCountry(item.country)}>
+                        <Accordion.Header>{item.country}</Accordion.Header>
+                        {league?.map((item) => (
+                            <Accordion.Body key={item.id} onClick={()=>selectLeague(item.league_name)}>
+                                {item.league_name}
+                            </Accordion.Body>
+                        ))}
+                    </Accordion>
+                ))
+                }
             </div>
+
             <div className="right-content">
                 {cards.map((item)=>(
                     <>
@@ -89,12 +118,6 @@ const LiveScore=()=>{
                     }
                     </>
                 ))}
-                
-                {/* {league?.map((item) => (
-                    <div key={item.id}>
-                        {item.league_name}
-                    </div>
-                ))} */}
             </div>
 
         </div>
