@@ -11808,8 +11808,8 @@ button.owl-next {
   .right-content{
     max-height: 600px;
     overflow-y: auto;
-    width: 300px;
-    /* margin: 0px auto; */
+    width: 600px;
+    margin: 0px auto;
     padding: 10px;
 
   }
@@ -11826,4 +11826,18 @@ button.owl-next {
   height: 38px;
   width: 200px;
   margin-bottom: 2px;
+}
+
+table.tableDark {
+  --bs-table-bg: rgba(0,0,0,0.9)
+  color:red !important
+}
+
+table > thead {
+  background-color: red !important;
+}
+
+table tbody tr td:first-child {
+  vertical-align: middle;
+  width: 200px;
 }

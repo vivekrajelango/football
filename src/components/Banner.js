@@ -9,7 +9,7 @@ const Banner=()=>{
         <div>
             <div className="banner">
                 <div className="content py-3">
-                    <div className="container-fluid py-lg-3">
+                    <div className="container py-lg-3">
                     <div className="row align-items-center">
                         <div className="col-lg-12 col-xs-12 content-photo mt-lg-0 mt-5">
                         <LiveScore />
