@@ -73,7 +73,7 @@ const LiveScore=()=>{
     useEffect(()=>{
         fetch("https://livescore-api.com/api-client/scores/live.json?&key=n02wwRHuy7UxvTbE&secret=cPJ3DbgZhS5fUsahscOZ4vtDDoa8hmMu")
         .then(res=>res.json())
-        .then(resp=>setLeague(resp.data.match.filter((item)=>item.country.name===country)))
+        .then(resp=>setLeague(resp.data.match.filter((item)=>item.country?.name===country)))
     },[country])
 
     useEffect(()=>{
@@ -83,10 +83,10 @@ const LiveScore=()=>{
         })
     },[teamId])
 
-    useEffect(()=>{
-        fetch('https://livescore-api.com/api-client/fixtures/matches.json?&key=n02wwRHuy7UxvTbE&secret=cPJ3DbgZhS5fUsahscOZ4vtDDoa8hmMu&team=19')
-        .then(resp=>console.log('fix', resp.url));
-    },[])
+    // useEffect(()=>{
+    //     fetch('https://livescore-api.com/api-client/fixtures/matches.json?&key=n02wwRHuy7UxvTbE&secret=cPJ3DbgZhS5fUsahscOZ4vtDDoa8hmMu&team=19')
+    //     .then(resp=>console.log('fix', resp.url));
+    // },[])
 
     return(
         <div className="score ">
