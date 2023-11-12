@@ -4,18 +4,24 @@ import Accordion from 'react-bootstrap/Accordion';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import { Form } from "react-bootstrap";
 
 const LiveScore=()=>{
     const value = useContext(DataContext);
     const [navData] = value.metaValue[0];
     const allowedCountries = navData?.allowedCountries;
-    const [filterCountries, setFilteredCountries] = useState([])
+    const [filterCountries, setFilteredCountries] = useState([]);
+    const [filterLeague, setFilteredLeague] = useState();
 
     const [countries, setCountries] = useState(allowedCountries);
     const [country, setCountry] = useState('England');
     const [league, setLeague] = useState([]);
     const [teamId, setTeamId] = useState(19);
     const [logo, setLogo] = useState(null);
+    const [toggleLeftPanel, setToggleLeftPanel] = useState(false);
+    const [toggleButton, setToggleButton] = useState(false);
     const [cards, setCards] = useState([]);
     const [season, setSeason] = useState(false);
 
@@ -34,23 +40,22 @@ const LiveScore=()=>{
     const selectedCountry=(name, id)=>{
         setCountry(name);
         setTeamId(id);
+        setToggleLeftPanel(prev=>!prev);
+        setToggleButton(prev=>!prev);
     }
 
-    const selectLeague=(id)=>{
-        const filt = league.filter((item)=>item.id === id)
-        console.log('filt', filt);
-        setCards(league.filter((item)=>item.id === id));
+    const backHandler=()=>{
+        setToggleLeftPanel(prev=>!prev);
+        setToggleButton(prev=>!prev);
+        setFilteredCountries(countries);
+        setLeague(league);
+    }
+    const selectLeague=(leagueName)=>{
+        // const filt = league.filter((item)=>item.competition_name === leagueName)
+        // console.log('filt', filt);
+        setFilteredLeague(league.filter((item)=>item.competition_name === leagueName));
     }
 
-    // useEffect(()=>{
-    //     if(allowedCountries){
-    //         fetch("https://api.football-data-api.com/country-list?key=test85g57")
-    //             .then(res=>res.json())
-    //             .then(resp=>{
-    //                 setCountries(resp.data.filter((item)=>allowedCountries && allowedCountries.includes(item.country)));
-    //             });
-    //     }
-    // },[allowedCountries])
     useEffect(()=>{ 
         if(allowedCountries){
             fetch("https://livescore-api.com/api-client/countries/list.json?&key=n02wwRHuy7UxvTbE&secret=cPJ3DbgZhS5fUsahscOZ4vtDDoa8hmMu")
@@ -62,13 +67,6 @@ const LiveScore=()=>{
     },[allowedCountries])
 
 
-
-    // useEffect(()=>{
-    //     fetch("https://api.football-data-api.com/league-list?key=test85g57")
-    //         .then(res=>res.json())
-    //         .then(resp=>setLeague(resp.data.filter(item=>item.country === country)))
-    //         // .then(ress=>console.log('leag', ress.data))
-    // },[country])
 
     useEffect(()=>{
         fetch("https://livescore-api.com/api-client/scores/live.json?&key=n02wwRHuy7UxvTbE&secret=cPJ3DbgZhS5fUsahscOZ4vtDDoa8hmMu")
@@ -83,21 +81,56 @@ const LiveScore=()=>{
         })
     },[teamId])
 
-    // useEffect(()=>{
-    //     fetch('https://livescore-api.com/api-client/fixtures/matches.json?&key=n02wwRHuy7UxvTbE&secret=cPJ3DbgZhS5fUsahscOZ4vtDDoa8hmMu&team=19')
-    //     .then(resp=>console.log('fix', resp.url));
-    // },[])
 
     return(
-        <div className="score ">
+        <div className="score">
             <div className="left-nav">
-            <input  
-                className="searchInput"
-                type="text"
-                placeholder="Search country"
-                onChange={searchHandler}
-            />
-            {filterCountries.length ? 
+            {!toggleButton && 
+            <Form>
+                <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
+                    <Form.Control type="text" autocomplete="new-password" placeholder="Search..." onChange={searchHandler} />
+                </Form.Group>
+            </Form>
+            }
+            {toggleButton && 
+            <Form>
+                <Form.Group className="mb-1 button" controlId="exampleForm.ControlInput1" onClick={backHandler} >
+                    <Button variant="secondary"> <span>{'<'} </span>{ country}</Button>{' '}
+                </Form.Group>
+            </Form>
+            }
+            
+            {!toggleLeftPanel &&
+            <div className="navBar">
+                {filterCountries.length ? 
+                    filterCountries?.map((item) => (
+                        <Navbar bg="dark" key={item.id}>
+                                <Navbar.Brand onClick={()=>selectedCountry(item.name, item.id)}>{item.name}</Navbar.Brand>
+                            </Navbar>
+                    )) : 
+                    countries?.map((item)=>(
+                        <Navbar bg="dark" key={item.id}>
+                            <Navbar.Brand onClick={()=>selectedCountry(item.name, item.id)}>{item.name}</Navbar.Brand>
+                        </Navbar>
+                    ))
+                }
+            </div>
+            }
+
+            {toggleLeftPanel && 
+            <div className="navBar">
+                {league &&
+                    [...new Set(league.map((item) => item.competition_name))].map((competitionName, index) => (
+                        <Navbar bg="dark" key={index}>
+                        <Navbar.Brand onClick={()=>selectLeague(competitionName)}>{competitionName}</Navbar.Brand>
+                        </Navbar>
+                ))}
+            </div>
+            }
+
+            
+            
+            {/* {filterCountries.length ? 
                 filterCountries?.map((item) => (
                     <Accordion key={item.id} onClick={()=>selectedCountry(item.name, item.id)}>
                         <Accordion.Header>{item.name}</Accordion.Header>
@@ -118,12 +151,42 @@ const LiveScore=()=>{
                         ))}
                     </Accordion>
                 ))
-                }
+                } */}
             </div>
-
+                --{filterLeague && filterLeague.length ? 'filtered': 'no'}
             <div className="right-content">
                 <Table hover>
-                    {league?.map((item)=>(
+                    {filterLeague?.length ? 
+                    filterLeague?.map((item)=>(
+                        <>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <img src={logo} width={30}/>
+                                </th>
+                                <th>{item.competition_name}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowSpan={2}>{item.status}</td>
+                                <td>{item.home_name}</td>
+                                <td>{item.score.split('-')[0]}</td>
+                            </tr>
+                            <tr>
+                                <td>{item.away_name}</td>
+                                <td>{item.score.split('-')[1]}</td>
+                            </tr>
+                            {/* <tr>
+                            <td colSpan={2}>Larry the Bird</td>
+                            <td>@twitter</td>
+                            </tr> */}
+                        </tbody>
+                        </>
+                    )) :
+                    
+                    league?.map((item)=>(
                         <>
                         <thead>
                             <tr>
